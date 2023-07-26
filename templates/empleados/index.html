@@ -1,0 +1,59 @@
+{% include 'header.html' %}
+<br />
+<a href="{{url_for('create')}}" class="btn btn-success">
+  Ingresa un empleado
+</a>
+<br />
+<br />
+
+<!-- Aquí comienza tu contenido -->
+<div class="container">
+  <table class="table table-light">
+    <thead class="thead-light">
+      <tr>
+        <th>#</th>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for empleado in empleados %}
+      <tr>
+        <td>{{empleado[0]}}</td>
+        <td>
+          <img
+            class="img-thumbnail"
+            width="100"
+            src="uploas/{{empleado[3]}}"
+            alt=""
+          />
+        </td>
+        <td>{{empleado[1]}}</td>
+        <td>{{empleado[2]}}</td>
+
+        <td>
+          <a class="btn btn-warning" href="/edit/{{empleado[0]}}">Editar</a>
+        </td>
+        <td>|</td>
+        <td>
+          <a
+            onclick="return confirm('Seguro que deseas eliminar el empleado?')"
+            class="btn btn-danger"
+            href="/destroy/{{empleado[0]}}"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Agrega los enlaces a los archivos JS de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+{% include 'footer.html' %}

@@ -1,0 +1,64 @@
+{% include 'header.html' %}
+<br>
+{% for empleado in empleados %}
+<form method="post" action="/update" enctype="multipart/form-data">
+
+
+  <div class="card">
+    <div class="card-header">
+      Editar empleados
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Datos del empleado</h5>
+      <p class="card-text">
+
+        <div class="form-group">
+          <label for="txtnombre">Nombre:</label>
+          <input id="txtnombre" value="{{empleado[1]}}"  class="form-control" type="text" name="txtnombre">
+        </div> 
+        <br>
+        
+        <div class="form-group">
+          <label for="txtcorreo">Correo:</label>
+          <input value="{{empleado[2]}}" id="txtcorreo" class="form-control" type="text" name="txtcorreo">
+        </div>
+        <br>
+
+        <div class="form-group">
+          <label for="txtfoto">Foto</label>
+          <img
+            class="img-thumbnail"
+            width="100"
+            src="{{url_for('uploas',nombreFoto=empleado[3])}}"
+            alt=""
+          />
+          <input value="{{empleado[3]}}" id="txtfoto" class="form-control" type="file" name="txtfoto">
+        </div>
+        <br>
+        
+
+        <div class="form-group">
+          <input class="btn btn-success" type="submit" value="Actualizar" />
+          <a class="btn btn-primary" href="{{url_for('index')}}">Regresar</a>
+        </div>
+        
+        
+        
+        </p>
+    </div>
+  </div>
+
+  
+  <br />
+  Id:
+  <input type="hidden" value="{{empleado[0]}}" name="txtid" id="txtid" />
+  <br />
+
+  
+ 
+ 
+  
+  
+  {% endfor %}
+</form>
+{% include 'footer.html' %}
